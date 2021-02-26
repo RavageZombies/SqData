@@ -21,4 +21,6 @@ build
 eclipse
 run
 
-# classes
+# run
+run/scripts
+!run/scripts/data.dat
