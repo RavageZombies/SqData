@@ -1,5 +1,7 @@
 package fr.nathanael2611.simpledatabasemanager;
 
+import fr.nico.sqript.ScriptManager;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -33,6 +35,10 @@ public class SimpleDatabaseManager
         this.packetChannel = NetworkRegistry.INSTANCE.newSimpleChannel("sdm");
         PacketHandler.init();
         MinecraftForge.EVENT_BUS.register(new SyncEventHandler());
+
+
+      //  ScriptManager.registerAction();
+
     }
 
     public static SimpleDatabaseManager getInstance() {
