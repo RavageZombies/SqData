@@ -1,0 +1,3 @@
+[submodule "SimpleDatabaseManager"]
+	path = SimpleDatabaseManager
+	url = https://github.com/RavageZombies/SimpleDatabaseManager
