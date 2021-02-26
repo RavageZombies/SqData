@@ -6,19 +6,25 @@ buildscript {
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:3.+'
+        classpath 'com.github.jengelman.gradle.plugins:shadow:4.0.4'
     }
 }
 
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'idea'
+apply plugin: 'com.github.johnrengelman.shadow'
 
 version = '1.0'
-group = 'fr.nathanael2611.simpledatabasemanager' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'simpledatabasemanager'
+group = 'fr.sqdata' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = 'SqData'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 compileJava {
     options.encoding = 'UTF-8'
+}
+
+configurations {
+    shade
 }
 
 minecraft {
@@ -63,6 +69,10 @@ dependencies {
     minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2854'
 
 	compile files('libs/Sqript.v1.0.1-a.jar')
+    compile project(':SimpleDatabaseManager')
+
+
+    shade project(':SimpleDatabaseManager')
 }
 
 repositories {
@@ -87,3 +97,12 @@ sourceSets {
         output.resourcesDir = output.classesDir
     }
 }
+
+shadowJar {
+    configurations = [project.configurations.shade]
+    from sourceSets.main.allSource
+    classifier ''
+}
+
+shadowJar.dependsOn('classes')
+
